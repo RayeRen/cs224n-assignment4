@@ -3,7 +3,7 @@
 # and saves preprocessed data into ./data
 # Get directory containing this script
 
-CODE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CODE_DIR="$( pwd )"
 
 export PYTHONPATH=$PYTHONPATH:$CODE_DIR
 
@@ -21,10 +21,7 @@ DATA_DIR=data
 DOWNLOAD_DIR=download
 mkdir -p $DATA_DIR
 rm -rf $DATA_DIR
-python $CODE_DIR/preprocessing/squad_preprocess.py
-
-# Download distributed word representations
-python $CODE_DIR/preprocessing/dwr.py
+python $CODE_DIR/run_preprocess.pt
 
 # Data processing for TensorFlow
 python $CODE_DIR/qa_data.py --glove_dim 100
